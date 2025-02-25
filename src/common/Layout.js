@@ -10,7 +10,9 @@ const Layout = ({children, style, statusBarStyle = 'dark-content'}) => {
         translucent={true}
       />
 
-      <ScrollView contentContainerStyle={[styles.content, style]}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={[styles.content, style]}>
         {children}
       </ScrollView>
     </SafeAreaView>

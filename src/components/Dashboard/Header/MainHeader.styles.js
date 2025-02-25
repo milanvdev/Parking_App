@@ -12,6 +12,14 @@ export default StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
+  imageContainer: {
+    width: 50,
+    height: 50,
+  },
+  userImage: {
+    width: '100%',
+    height: '100%',
+  },
   userText: {
     marginLeft: 16,
   },
@@ -22,5 +30,14 @@ export default StyleSheet.create({
   userName: {
     fontFamily: Fonts.LexedLight,
     fontSize: 16,
+  },
+  notificationContainer: {
+    borderColor: 'rgba(185, 184, 177, 0.2)',
+    borderWidth: 1,
+    borderRadius: 100,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 13,
   },
 });

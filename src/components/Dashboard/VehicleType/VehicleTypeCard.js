@@ -1,14 +1,23 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {View, Text, FlatList} from 'react-native';
+import {View, Text, FlatList, TouchableOpacity} from 'react-native';
 import {vehicleTypes} from '../../../data/vehicleTypes';
 import styles from './VehicleTypeCard.styles';
+import SearchBar from '../../../common/SearchBar';
+import FilterIcon from '../../../assets/svg/FilterIcon';
 
-const VehicleTypeCardItem = ({vehicle}) => {
+const VehicleTypeCardItem = ({vehicle, index}) => {
   return (
-    <View style={styles.card}>
+    <TouchableOpacity
+      activeOpacity={0.7}
+      style={[
+        styles.card,
+        index % 2 === 0 ? styles.cardLeft : styles.cardRight,
+      ]}>
+      {vehicle.img}
       <Text style={styles.name}>{vehicle.name}</Text>
       <Text style={styles.location}>{vehicle.location} Locations</Text>
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -17,7 +26,10 @@ const VehicleTypeCard = () => {
     <View>
       {/* Search Input */}
       <View style={styles.searchContainer}>
-        <Text>Search Input</Text>
+        <SearchBar style={{marginRight: 10}} />
+        <TouchableOpacity activeOpacity={0.7} style={styles.filterContainer}>
+          <FilterIcon />
+        </TouchableOpacity>
       </View>
 
       {/* Vehicle Type Section */}
@@ -30,7 +42,9 @@ const VehicleTypeCard = () => {
           keyExtractor={item => item.id.toString()}
           numColumns={2}
           columnWrapperStyle={styles.row}
-          renderItem={({item}) => <VehicleTypeCardItem vehicle={item} />}
+          renderItem={({item, index}) => (
+            <VehicleTypeCardItem vehicle={item} index={index} />
+          )}
         />
       </View>
     </View>
