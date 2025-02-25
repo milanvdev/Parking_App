@@ -1,20 +1,19 @@
 import {View, Text, TouchableOpacity, FlatList, Image} from 'react-native';
 import React from 'react';
-import PopularLocationStyles from './PopularLocationCard.styles';
+import {Layout} from '../../../common';
+import Icon from 'react-native-vector-icons/Ionicons';
 import {vehicleLocation} from '../../../data/vehicleTypes';
-import Icon from 'react-native-vector-icons/Feather';
+import PopularLocationStyles from '../PopularLocations/PopularLocationCard.styles';
 import AntDesignIcon from 'react-native-vector-icons/AntDesign';
+import FeatherIcon from 'react-native-vector-icons/Feather';
+import DollarIcon from '../../../assets/svg/DollarIcon';
 
 const VehicleLocationCardItem = ({vehicle, navigation}) => {
   return (
     <TouchableOpacity
       activeOpacity={0.7}
       style={PopularLocationStyles.card}
-      onPress={() =>
-        navigation.navigate('LocationDetails', {
-          data: vehicle,
-        })
-      }>
+      onPress={() => navigation.navigate('LocationDetails', {data: vehicle})}>
       <View style={PopularLocationStyles.imageContainer}>
         <Image
           source={vehicle.locationImg}
@@ -31,7 +30,7 @@ const VehicleLocationCardItem = ({vehicle, navigation}) => {
       <View style={PopularLocationStyles.infoRow}>
         {/* Rating */}
         <View style={PopularLocationStyles.ratingContainer}>
-          <AntDesignIcon name="star" size={20} color="#FFD613" />
+          <AntDesignIcon name="star" size={18} color="#FFD613" />
           <Text style={PopularLocationStyles.ratingText}>
             {vehicle.locationRating}
           </Text>
@@ -39,7 +38,7 @@ const VehicleLocationCardItem = ({vehicle, navigation}) => {
 
         {/* Location Distance */}
         <View style={PopularLocationStyles.locationContainer}>
-          <Icon name="map-pin" size={20} />
+          <FeatherIcon name="map-pin" size={18} />
           <Text style={PopularLocationStyles.locationText}>
             {vehicle.locationKm}km
           </Text>
@@ -47,7 +46,8 @@ const VehicleLocationCardItem = ({vehicle, navigation}) => {
 
         {/* Price */}
         <View style={PopularLocationStyles.priceContainer}>
-          <Text style={PopularLocationStyles.priceText}>
+          <DollarIcon />
+          <Text style={[PopularLocationStyles.priceText]}>
             <Text style={PopularLocationStyles.priceHighlight}>
               ${vehicle.locationPrice}
             </Text>
@@ -59,28 +59,24 @@ const VehicleLocationCardItem = ({vehicle, navigation}) => {
   );
 };
 
-const PopularLocationCard = ({navigation}) => {
+const ViewAllPopularLocations = ({navigation}) => {
   return (
-    <View>
-      <View style={PopularLocationStyles.header}>
-        <Text style={PopularLocationStyles.vehicleTypeText}>Vehicle Type</Text>
-        <TouchableOpacity
-          activeOpacity={0.7}
-          onPress={() => navigation.navigate('ViewAllPopularLocations')}>
-          <Text style={PopularLocationStyles.viewAllText}>View All</Text>
-        </TouchableOpacity>
+    <Layout>
+      <TouchableOpacity activeOpacity={0.7} onPress={() => navigation.goBack()}>
+        <Icon name="chevron-back" size={24} />
+      </TouchableOpacity>
+      <View>
+        <FlatList
+          data={vehicleLocation}
+          keyExtractor={item => item.id.toString()}
+          numColumns={1}
+          renderItem={({item}) => (
+            <VehicleLocationCardItem vehicle={item} navigation={navigation} />
+          )}
+        />
       </View>
-
-      <FlatList
-        data={vehicleLocation}
-        keyExtractor={item => item.id.toString()}
-        numColumns={1}
-        renderItem={({item}) => (
-          <VehicleLocationCardItem vehicle={item} navigation={navigation} />
-        )}
-      />
-    </View>
+    </Layout>
   );
 };
 
-export default PopularLocationCard;
+export default ViewAllPopularLocations;

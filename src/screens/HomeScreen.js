@@ -4,12 +4,12 @@ import VehicleTypeCard from '../components/Dashboard/VehicleType/VehicleTypeCard
 import PopularLocationCard from '../components/Dashboard/PopularLocations/PopularLocationCard';
 import Layout from '../common/Layout';
 
-const HomeScreen = () => {
+const HomeScreen = ({navigation}) => {
   return (
     <Layout>
       <MainHeader />
       <VehicleTypeCard />
-      <PopularLocationCard />
+      <PopularLocationCard navigation={navigation} />
     </Layout>
   );
 };

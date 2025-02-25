@@ -49,4 +49,13 @@ export const vehicleLocation = [
     locationKm: '1.2',
     locationPrice: '7',
   },
+  {
+    id: 3,
+    locationImg: require('../assets/images/AlzebiaImg.png'),
+    locationName: 'Plumb Tree Garden',
+    locationAddress: '3891 Ranchview Dr. Richardson, California 62639',
+    locationRating: '4.8',
+    locationKm: '2.5',
+    locationPrice: '7',
+  },
 ];

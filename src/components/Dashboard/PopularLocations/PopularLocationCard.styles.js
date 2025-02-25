@@ -72,6 +72,7 @@ export default StyleSheet.create({
   priceText: {
     fontSize: 16,
     fontFamily: Fonts.LexedLight,
+    marginLeft: 5,
   },
   priceHighlight: {
     fontFamily: Fonts.LexedMedium,
